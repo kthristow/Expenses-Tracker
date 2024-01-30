@@ -14,19 +14,27 @@ function ManageExpense({ route, navigation }) {
     });
   }, [navigation, isEditing]);
 
-  function deleteExpense() {}
+  function deleteExpense() {
+    navigation.goBack();
+  }
 
-  function onCancel() {}
+  function onCancel() {
+    navigation.goBack();
+  }
 
-  function onConfirm() {}
+  function onConfirm() {
+    navigation.goBack();
+  }
 
   return (
     <View style={styles.container}>
-      <View>
-        <Button mode="flat" onPress={onCancel}>
+      <View style={styles.buttons}>
+        <Button style={styles.button} mode="flat" onPress={onCancel}>
           Cancel
         </Button>
-        <Button onPress={onConfirm}>{isEditing ? "Update" : "Add"}</Button>
+        <Button style={styles.button} onPress={onConfirm}>
+          {isEditing ? "Update" : "Add"}
+        </Button>
       </View>
       {isEditing && (
         <View style={styles.deleteContainer}>
@@ -54,6 +62,15 @@ const styles = StyleSheet.create({
     borderTopWidth: 2,
     borderTopColor: GlobalStyles.colors.primary200,
     alignItems: "center",
+  },
+  buttons: {
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  button: {
+    minWidth: 120,
+    marginHorizontal: 8,
   },
 });
 
